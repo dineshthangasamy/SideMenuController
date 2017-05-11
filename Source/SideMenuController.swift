@@ -86,8 +86,9 @@ public extension SideMenuController {
      
      - parameter centerViewController: controller to be embedded
      - parameter cacheIdentifier: identifier for the view controllers cache
+     - paramter hideSidePanel: bool to change the center view controller without closing the side panel
      */
-    public func embed(centerViewController controller: UIViewController, cacheIdentifier: String? = nil) {
+    public func embed(centerViewController controller: UIViewController, cacheIdentifier: String? = nil, hideSidePanel: Bool = true) {
         
         if let id = cacheIdentifier {
             controllersCache[id] = controller
@@ -118,7 +119,7 @@ public extension SideMenuController {
                 completion()
             }
             
-            if sidePanelVisible {
+            if sidePanelVisible && hideSidePanel {
                 animate(toReveal: false)
             }
         }
