@@ -330,6 +330,7 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
             }
             self.transitionInProgress = false
             self.centerViewController.view.isUserInteractionEnabled = !reveal
+            self.centerViewController.view.isUserInteractionEnabled = self._preferences.interaction.enableCenterViewInteraction
             if updated {
                 let delegateMethod = reveal ? self.delegate?.sideMenuControllerDidReveal : self.delegate?.sideMenuControllerDidHide
                 delegateMethod?(self)
