@@ -61,6 +61,7 @@ public extension SideMenuController {
             public var panningEnabled = true
             public var swipingEnabled = true
             public var menuButtonAccessibilityIdentifier: String?
+            public var closeOnViewDisappear = true
         }
         
         public var drawing = Drawing()

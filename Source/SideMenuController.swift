@@ -191,7 +191,7 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
-        if sidePanelVisible {
+        if sidePanelVisible && self._preferences.interaction.closeOnViewDisappear {
             toggle()
         }
     }
@@ -208,7 +208,7 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
     
     func repositionViews(to size: CGSize) {
         
-        if sidePanelVisible {
+        if sidePanelVisible && self._preferences.interaction.closeOnViewDisappear {
             toggle()
         }
         
