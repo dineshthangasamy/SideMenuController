@@ -231,6 +231,12 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
         previousStatusBarHeight = statusBarHeight
     }
     
+    // MARK: - Refresh Preferences -
+    
+    open func refreshPreferences(preferences: Preferences){
+        self._preferences = preferences
+    }
+    
     func configureViews(){
         
         centerPanel = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
