@@ -252,6 +252,12 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
         
         if sidePanelPosition.isPositionedUnder {
             view.sendSubview(toBack: sidePanel)
+            
+            if (_preferences.drawing.centerPanelOverlay) {
+                centerPanelOverlay = UIView(frame: centerPanel.frame)
+                centerPanelOverlay.backgroundColor = _preferences.drawing.centerPanelOverlayColor
+            }
+
         } else {
             centerPanelOverlay = UIView(frame: centerPanel.frame)
             centerPanelOverlay.backgroundColor = _preferences.drawing.centerPanelOverlayColor
@@ -308,12 +314,20 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
         if !sidePanelPosition.isPositionedUnder {
             if display && centerPanelOverlay.superview == nil {
                 centerPanelOverlay.alpha = 0
-                view.insertSubview(self.centerPanelOverlay, belowSubview: self.sidePanel)
+                view.insertSubview(self.centerPanelOverlay, aboveSubview: self.centerPanel)
             }else if !display {
                 centerPanelOverlay.removeFromSuperview()
             }
         } else {
             setSideShadow(hidden: !display)
+            
+            if (_preferences.drawing.centerPanelOverlay) {
+                
+                if let cpo = centerPanelOverlay {
+                    cpo.alpha = 0
+                    view.insertSubview(cpo, aboveSubview: self.centerPanel)
+                }
+            }
         }
     }
     
