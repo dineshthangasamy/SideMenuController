@@ -101,8 +101,10 @@ extension UIWindow {
         
         if behaviour == .horizontalPan {
             animations()
+        } else if behaviour == .slideAnimation {
+            UIView.animate(withDuration: 0.22, animations: animations)
         } else {
-            UIView.animate(withDuration: 0.25, animations: animations)
+            UIView.animate(withDuration: 0.12, animations: animations)
         }
     }
 }
