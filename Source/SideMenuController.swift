@@ -90,6 +90,14 @@ public extension SideMenuController {
      */
     public func embed(centerViewController controller: UIViewController, cacheIdentifier: String? = nil, hideSidePanel: Bool = true) {
         
+        guard controller !== centerViewController else {
+            if sidePanelVisible {
+                animate(toReveal: false)
+            }
+            
+            return
+        }
+        
         if let id = cacheIdentifier {
             controllersCache[id] = controller
         }
